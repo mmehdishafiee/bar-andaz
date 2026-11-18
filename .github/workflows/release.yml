@@ -39,12 +39,24 @@ jobs:
       - name: Create the GitHub release
         uses: softprops/action-gh-release@v2
         with:
+          name: بار انداز ${{ github.ref_name }}
           files: dist/*.zip
-          generate_release_notes: true
+          # عمداً generate_release_notes استفاده نمی‌شود: وقتی true باشد،
+          # GitHub بدنهٔ body را نادیده می‌گیرد و توضیح فارسی از بین می‌رود.
           body: |
-            بستهٔ نصبی این نسخه در فایل زیپ زیر است.
+            **بار انداز** — لینک دانلود مستقیم APK برای اپ‌های رایگان کافه‌بازار و مایکت.
 
-            **نصب دستی:** زیپ را باز کن و پوشهٔ حاصل را از طریق
-            `chrome://extensions` → Developer mode → **Load unpacked** بارگذاری کن.
+            ### نصب
 
-            فهرست تغییرات: [`CHANGELOG.md`](../blob/main/CHANGELOG.md)
+            بستهٔ نصبی این نسخه، فایل زیپ زیر است:
+
+            ۱. زیپ را دانلود و باز کن.
+            ۲. در کروم به `chrome://extensions` برو.
+            ۳. **Developer mode** را روشن کن.
+            ۴. **Load unpacked** را بزن و پوشهٔ بازشده را انتخاب کن.
+
+            ### تغییرات
+
+            فهرست کامل: [CHANGELOG.md](https://github.com/mmehdishafiee/bar-andaz/blob/main/CHANGELOG.md)
+
+            پروانه: [MIT](https://github.com/mmehdishafiee/bar-andaz/blob/main/LICENSE) · سازگار با Chrome 102+
