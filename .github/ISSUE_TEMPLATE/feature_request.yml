@@ -1,0 +1,51 @@
+name: پیشنهاد ویژگی
+description: یک ایده یا بهبود پیشنهاد بده
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: مشکل چیست؟
+      description: چه چیزی الان سخت یا غیرممکن است؟
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: راه‌حل پیشنهادی
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: گزینه‌های دیگر
+      description: راه‌های دیگری که در نظر گرفتی
+    validations:
+      required: false
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: این پیشنهاد کدام بخش را عوض می‌کند؟
+      options:
+        - پشتیبانی از یک فروشگاه جدید
+        - رابط کاربری / طراحی
+        - رفتار دانلود
+        - مستندات
+        - ابزارهای توسعه
+        - دیگر
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: بررسی‌های نهایی
+      options:
+        - label: issueهای موجود را جست‌وجو کردم
+          required: true
+        - label: حاضرم خودم این را پیاده‌سازی کنم
+          required: false

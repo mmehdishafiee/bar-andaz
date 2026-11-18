@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: آسیب‌پذیری امنیتی
+    url: https://github.com/mmehdishafiee/bar-andaz/security/advisories/new
+    about: لطفاً مشکلات امنیتی را در issue عمومی ثبت نکن. به SECURITY.md نگاه کن.
+  - name: سؤال و گفت‌وگو
+    url: https://github.com/mmehdishafiee/bar-andaz/discussions
+    about: برای سؤال، ایده‌های کلی و بحث آزاد.

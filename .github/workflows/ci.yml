@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Static checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run check.js
+        run: node tools/check.js
+
+      - name: Build the release package
+        run: node tools/build.js
+
+      - name: Verify the package is a valid zip
+        run: |
+          set -euo pipefail
+          zipfile="$(ls dist/*.zip | head -n1)"
+          echo "checking $zipfile"
+          python3 - "$zipfile" <<'PY'
+          import sys, zipfile
+          path = sys.argv[1]
+          with zipfile.ZipFile(path) as z:
+              bad = z.testzip()
+              if bad:
+                  raise SystemExit("corrupt entry: " + bad)
+              names = z.namelist()
+          assert "manifest.json" in names, "manifest.json missing from the archive"
+          assert any(n.startswith("icons/") for n in names), "icons/ missing from the archive"
+          print(f"ok — {len(names)} entries")
+          PY

@@ -1,0 +1,490 @@
+/* ==========================================================================
+   بار انداز — پوستهٔ پاپ‌آپ
+   توکن‌های طراحی مستقیماً از استایل‌شیت leepaak.ir برداشته شده‌اند:
+   primary #473BF0 (آبی) · accent #EE675A (نارنجی/مرجانی) · خنثی‌ها و شعاع‌ها.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Vazirmatn Var";
+  src: url("fonts/vazirmatn-arabic-var.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* ---------- توکن‌ها: حالت تیره (پیش‌فرض) ---------- */
+
+:root {
+  --lp-primary: #473bf0;
+  --lp-primary-hi: #5a4ff5;
+  --lp-primary-lo: #3a2edc;
+  --lp-accent: #ee675a;
+  --lp-accent-hi: #f1786c;
+
+  --lp-bg: #121212;
+  --lp-panel: #1b1a1a;
+  --lp-panel-2: #242426;
+  --lp-panel-3: #2e2e32;
+  --lp-line: #36363d;
+  --lp-line-hi: #51515b;
+
+  --lp-heading: #ffffff;
+  --lp-text: #c0c0c6;
+  --lp-text-hi: #e2e2e7;
+  --lp-muted: #aaaab3;
+
+  --lp-on-primary: #ffffff;
+  --lp-on-accent: #1b1a1a;
+  --lp-tint: rgb(71 59 240 / 0.16);
+  --lp-focus: rgb(71 59 240 / 0.5);
+  --lp-shadow: rgb(0 0 0 / 0.45);
+
+  --lp-radius: 10px;
+  --lp-radius-lg: 16px;
+  --lp-radius-xl: 24px;
+  --lp-pill: 100px;
+  --lp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --lp-font: "Vazirmatn Var", "LP Sans", Vazirmatn, "Segoe UI", Tahoma, sans-serif;
+  --lp-mono: ui-monospace, "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+/* ---------- توکن‌ها: حالت روشن (هم‌راستا با تم روشن سایت) ---------- */
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --lp-bg: #ffffff;
+    --lp-panel: #ffffff;
+    --lp-panel-2: #f7f7f9;
+    --lp-panel-3: #eff0f4;
+    --lp-line: #e2e2e7;
+    --lp-line-hi: rgb(138 138 147 / 0.5);
+
+    --lp-heading: #1b1a1a;
+    --lp-text: #4a4a52;
+    --lp-text-hi: #1b1a1a;
+    --lp-muted: #66666f;
+
+    --lp-tint: rgb(71 59 240 / 0.08);
+    --lp-shadow: rgb(27 26 26 / 0.12);
+  }
+}
+
+/* ---------- پایه ---------- */
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  width: 384px;
+  background: var(--lp-bg);
+  color: var(--lp-text);
+  font-family: var(--lp-font);
+  font-size: 13px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+/* آیکون‌ها: سبک Lucide، همان stroke-width سایت (1.75) */
+.i {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- سربرگ برند ---------- */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.brand__logo {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--lp-radius-lg);
+  background: linear-gradient(180deg, #5348f5, var(--lp-primary-lo));
+  box-shadow: 0 6px 18px rgb(71 59 240 / 0.32);
+}
+
+.brand__logo img {
+  width: 27px;
+  height: 27px;
+  display: block;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.brand__name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--lp-heading);
+  letter-spacing: -0.01em;
+}
+
+.brand__tag {
+  font-size: 11px;
+  color: var(--lp-muted);
+  line-height: 1.5;
+}
+
+/* ---------- پنل فرم ---------- */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 13px;
+  border-radius: var(--lp-radius-xl);
+  background: var(--lp-panel);
+  border: 1px solid var(--lp-line);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field__label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--lp-muted);
+}
+
+/* ---------- انتخابگر فروشگاه ---------- */
+
+.switch {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--lp-pill);
+  background: var(--lp-panel-2);
+  border: 1px solid var(--lp-line);
+}
+
+.switch__item {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: var(--lp-pill);
+  background: transparent;
+  color: var(--lp-muted);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.25s var(--lp-ease), color 0.25s var(--lp-ease);
+}
+
+.switch__item:hover { color: var(--lp-text-hi); background: var(--lp-panel-3); }
+
+.switch__item.active {
+  background: linear-gradient(180deg, var(--lp-primary-hi), var(--lp-primary));
+  color: var(--lp-on-primary);
+  box-shadow: 0 2px 10px rgb(71 59 240 / 0.35);
+}
+
+.switch__item.active:hover { background: linear-gradient(180deg, var(--lp-primary-hi), var(--lp-primary)); }
+
+/* ---------- ورودی ---------- */
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 11px;
+  border-radius: var(--lp-radius);
+  background: var(--lp-panel-2);
+  border: 1px solid var(--lp-line);
+  transition: border-color 0.25s var(--lp-ease), box-shadow 0.25s var(--lp-ease);
+}
+
+.input:focus-within {
+  border-color: var(--lp-primary);
+  box-shadow: 0 0 0 3px var(--lp-tint);
+}
+
+.input__icon { color: var(--lp-muted); }
+
+.input input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  color: var(--lp-text-hi);
+  font-family: var(--lp-mono);
+  font-size: 12.5px;
+  letter-spacing: -0.01em;
+  outline: none;
+}
+
+.input input::placeholder { color: var(--lp-muted); font-family: var(--lp-font); }
+
+.input__clear {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--lp-pill);
+  background: var(--lp-panel-3);
+  color: var(--lp-muted);
+  cursor: pointer;
+}
+
+.input__clear:hover { color: var(--lp-text-hi); }
+.input__clear .i { width: 13px; height: 13px; }
+
+/* ---------- دکمه‌ها ---------- */
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  flex: 1 1 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--lp-radius);
+  background: var(--lp-panel-2);
+  color: var(--lp-text-hi);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.25s var(--lp-ease), border-color 0.25s var(--lp-ease),
+              transform 0.15s var(--lp-ease), box-shadow 0.25s var(--lp-ease);
+}
+
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.55; cursor: default; transform: none; }
+
+.btn--primary {
+  background: linear-gradient(180deg, var(--lp-primary-hi), var(--lp-primary));
+  color: var(--lp-on-primary);
+  box-shadow: 0 4px 14px rgb(71 59 240 / 0.32);
+}
+
+.btn--primary:hover:not(:disabled) { box-shadow: 0 6px 20px rgb(71 59 240 / 0.42); }
+
+.btn--cta {
+  background: linear-gradient(180deg, var(--lp-accent-hi), var(--lp-accent));
+  color: var(--lp-on-accent);
+  box-shadow: 0 4px 14px rgb(238 103 90 / 0.32);
+}
+
+.btn--cta:hover { box-shadow: 0 6px 20px rgb(238 103 90 / 0.42); }
+
+.btn--ghost {
+  background: var(--lp-panel-2);
+  border-color: var(--lp-line);
+  color: var(--lp-text-hi);
+}
+
+.btn--ghost:hover { background: var(--lp-panel-3); border-color: var(--lp-line-hi); }
+
+.btn--square {
+  flex: 0 0 auto;
+  width: 40px;
+  padding: 0;
+}
+
+/* ---------- پیام ---------- */
+
+.alert {
+  padding: 10px 12px;
+  border-radius: var(--lp-radius);
+  border: 1px solid var(--lp-line);
+  background: var(--lp-panel-2);
+  font-size: 12px;
+  line-height: 1.75;
+  word-break: break-word;
+}
+
+.alert--error {
+  border-color: rgb(238 103 90 / 0.45);
+  background: rgb(238 103 90 / 0.1);
+  color: var(--lp-accent);
+}
+
+.alert--info {
+  border-color: rgb(71 59 240 / 0.4);
+  background: var(--lp-tint);
+  color: var(--lp-text-hi);
+}
+
+/* ---------- کارت نتیجه ---------- */
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 13px;
+  border-radius: var(--lp-radius-xl);
+  background: var(--lp-panel);
+  border: 1px solid var(--lp-line);
+  animation: rise 0.35s var(--lp-ease) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.result__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.result__icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: var(--lp-radius-lg);
+  background: var(--lp-panel-2);
+  object-fit: cover;
+}
+
+.result__ident {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.result__name {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--lp-heading);
+  word-break: break-word;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.chip {
+  padding: 2px 8px;
+  border-radius: var(--lp-pill);
+  background: var(--lp-panel-2);
+  border: 1px solid var(--lp-line);
+  color: var(--lp-muted);
+  font-size: 10.5px;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+.chip--store {
+  background: var(--lp-tint);
+  border-color: rgb(71 59 240 / 0.35);
+  color: var(--lp-text-hi);
+}
+
+.badge {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  padding: 3px 9px;
+  border-radius: var(--lp-pill);
+  background: var(--lp-accent);
+  color: var(--lp-on-accent);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.badge--paid { background: var(--lp-panel-3); color: var(--lp-muted); }
+
+.linkrow {
+  display: flex;
+  gap: 6px;
+}
+
+.linkrow input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 11px;
+  height: 40px;
+  border-radius: var(--lp-radius);
+  border: 1px solid var(--lp-line);
+  background: var(--lp-panel-2);
+  color: var(--lp-text);
+  font-family: var(--lp-mono);
+  font-size: 11px;
+  outline: none;
+}
+
+.linkrow input:focus { border-color: var(--lp-primary); box-shadow: 0 0 0 3px var(--lp-tint); }
+
+/* ---------- پابرگ ---------- */
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--lp-muted);
+  font-size: 10.5px;
+}
+
+.foot a {
+  color: var(--lp-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .foot a { color: #aaa3ff; }
+}
+
+.foot a:hover { text-decoration: underline; }
+.foot .dot { opacity: 0.6; }
+
+/* ---------- دسترس‌پذیری ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--lp-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

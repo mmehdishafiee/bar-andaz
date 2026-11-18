@@ -1,0 +1,101 @@
+name: گزارش باگ
+description: یک مشکل در بار انداز گزارش کن
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ممنون که وقت می‌گذاری! لطفاً قبل از ثبت، issueهای باز را جست‌وجو کن.
+
+        ⚠️ برای آسیب‌پذیری‌های امنیتی **این فرم را استفاده نکن** — به
+        [SECURITY.md](../blob/main/SECURITY.md) نگاه کن.
+
+  - type: input
+    id: package
+    attributes:
+      label: نام پکیج
+      description: پکیجی که مشکل داشت
+      placeholder: com.example.app
+    validations:
+      required: false
+
+  - type: dropdown
+    id: store
+    attributes:
+      label: فروشگاه
+      options:
+        - کافه‌بازار (cafebazaar.ir)
+        - مایکت (myket.ir)
+        - هر دو
+        - نامربوط / رابط کاربری
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: کجا مشکل داری؟
+      options:
+        - پاپ‌آپ
+        - دکمهٔ شناور روی صفحهٔ فروشگاه
+        - هیچ‌کدام / مطمئن نیستم
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: چه اتفاقی افتاد؟
+      description: انتظار داشتی چه بشود و در عوض چه شد؟
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: مراحل بازتولید
+      placeholder: |
+        ۱. برو به https://cafebazaar.ir/app/...
+        ۲. روی آیکون افزونه کلیک کن
+        ۳. «دریافت لینک» را بزن
+        ۴. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: errors
+    attributes:
+      label: پیام خطا
+      description: |
+        از `chrome://extensions` → کارت افزونه → دکمهٔ **Errors**،
+        یا از کنسول سرویس‌ورکر (`chrome://extensions` → service worker).
+      render: text
+    validations:
+      required: false
+
+  - type: input
+    id: extension-version
+    attributes:
+      label: نسخهٔ افزونه
+      placeholder: "1.2.0"
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: نسخهٔ مرورگر و سیستم‌عامل
+      placeholder: "Chrome 131 / Windows 11"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: بررسی‌های نهایی
+      options:
+        - label: با آخرین نسخهٔ `main` تست کردم
+          required: false
+        - label: issueهای موجود را جست‌وجو کردم
+          required: true

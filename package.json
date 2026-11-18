@@ -1,0 +1,35 @@
+{
+  "name": "bar-andaz",
+  "version": "1.2.0",
+  "description": "Chrome extension that resolves direct APK download links for free apps on Cafebazaar and Myket",
+  "private": true,
+  "license": "MIT",
+  "author": "Leepaak (https://leepaak.ir)",
+  "homepage": "https://github.com/mmehdishafiee/bar-andaz#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmehdishafiee/bar-andaz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mmehdishafiee/bar-andaz/issues"
+  },
+  "keywords": [
+    "chrome-extension",
+    "manifest-v3",
+    "apk",
+    "cafebazaar",
+    "myket",
+    "iran",
+    "persian",
+    "rtl"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "check": "node tools/check.js",
+    "test": "node tools/test_core.js",
+    "build": "node tools/check.js && node tools/build.js",
+    "icons": "python tools/make_icons.py"
+  }
+}

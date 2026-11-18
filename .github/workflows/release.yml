@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Package and publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Verify the tag matches the manifest version
+        run: |
+          set -euo pipefail
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(node -p "require('./manifest.json').version")"
+          echo "tag=$tag manifest=$version"
+          if [ "$tag" != "$version" ]; then
+            echo "::error::tag v$tag does not match manifest version $version"
+            exit 1
+          fi
+
+      - name: Run check.js
+        run: node tools/check.js
+
+      - name: Build the release package
+        run: node tools/build.js
+
+      - name: Create the GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
+          body: |
+            بستهٔ نصبی این نسخه در فایل زیپ زیر است.
+
+            **نصب دستی:** زیپ را باز کن و پوشهٔ حاصل را از طریق
+            `chrome://extensions` → Developer mode → **Load unpacked** بارگذاری کن.
+
+            فهرست تغییرات: [`CHANGELOG.md`](../blob/main/CHANGELOG.md)

@@ -1,0 +1,11 @@
+# .gitignore
+
+node_modules/
+dist/
+*.zip
+
+# local previews and scratch files produced by development tooling
+_preview-*.html
+*.log
+.DS_Store
+Thumbs.db

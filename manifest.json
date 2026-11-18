@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "بار انداز — دانلودر APK کافه‌بازار و مایکت",
+  "short_name": "بار انداز",
+  "version": "1.2.0",
+  "description": "لینک دانلود مستقیم APK برای اپلیکیشن‌های رایگان کافه‌بازار و مایکت.",
+  "homepage_url": "https://leepaak.ir",
+  "author": "Leepaak",
+  "minimum_chrome_version": "102",
+  "action": {
+    "default_title": "بار انداز",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "downloads",
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://api.cafebazaar.ir/*",
+    "https://cafebazaar.ir/*",
+    "https://*.cafebazaar.ir/*",
+    "https://myket.ir/*",
+    "https://*.myket.ir/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://cafebazaar.ir/*",
+        "https://*.cafebazaar.ir/*",
+        "https://myket.ir/*",
+        "https://*.myket.ir/*"
+      ],
+      "js": ["shared.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["fonts/*", "icons/*"],
+      "matches": [
+        "https://cafebazaar.ir/*",
+        "https://*.cafebazaar.ir/*",
+        "https://myket.ir/*",
+        "https://*.myket.ir/*"
+      ]
+    }
+  ]
+}
