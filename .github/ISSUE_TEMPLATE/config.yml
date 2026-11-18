@@ -3,6 +3,11 @@ contact_links:
   - name: آسیب‌پذیری امنیتی
     url: https://github.com/mmehdishafiee/bar-andaz/security/advisories/new
     about: لطفاً مشکلات امنیتی را در issue عمومی ثبت نکن. به SECURITY.md نگاه کن.
-  - name: سؤال و گفت‌وگو
-    url: https://github.com/mmehdishafiee/bar-andaz/discussions
-    about: برای سؤال، ایده‌های کلی و بحث آزاد.
+
+  # Discussions در این ریپو فعال نیست، پس لینک دادن به آن ۴۰۴ می‌دهد.
+  # بعد از فعال کردنش (Settings → General → Features → Discussions) این
+  # سه خط را از حالت کامنت خارج کن:
+  #
+  # - name: سؤال و گفت‌وگو
+  #   url: https://github.com/mmehdishafiee/bar-andaz/discussions
+  #   about: برای سؤال، ایده‌های کلی و بحث آزاد.
